@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="license.css">
+    <title>Enter License Key</title>
+</head>
+<body>
+
+    <div id="container">
+        <h1>Licens nyckel</h1>
+        <h2>För att få tillgång till BankID krävs en licens</h2>
+        <p>Har du redan en licens? Ange den i rutan nedan och klicka Fortsätt</p>
+        <p>Har du inte en licens? Klicka här för att ansluta till våran discord där du kan köpa tillgång</p>
+
+        <input type="text" id="licenseKey" placeholder="Enter your license key">
+        <button onclick="validateLicenseKey()">Submit</button>
+        <p id="errorMessage" style="color: red;"></p>
+    </div>
+
+    <script>
+        async function validateLicenseKey() {
+            const enteredKey = document.getElementById('licenseKey').value;
+            const errorMessage = document.getElementById('errorMessage');
+
+            try {
+                const response = await fetch('/.netlify/functions/api/validate-license-key', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ key: enteredKey })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Validation request failed');
+                }
+
+                const result = await response.json();
+
+                console.log('Validation Result:', result);
+
+                if (result.valid) {
+                    const expiryTime = Date.now() + 10000; // Token expiry time (1 hour)
+                    localStorage.setItem('licenseKey', enteredKey);
+                    localStorage.setItem('tokenExpiry', expiryTime);
+                    window.location.href = 'index.html'; // Redirect to your main app page
+                } else {
+                    errorMessage.textContent = 'Den angivna licensnyckeln är ogiltig. Försök igen.';
+                }
+            } catch (error) {
+                console.error('Error validating license key:', error);
+                errorMessage.textContent = 'Någonting gick fel. Försök igen.';
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,218 @@
+/* styles.css */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #F5F5F5;
+    overflow: hidden; 
+}
+
+.container {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: #FFFFFF;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 15px;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    background-color: #E6E6E6;
+}
+
+.back-button {
+    font-size: 16px;
+    border: none;
+    background: none;
+    color: #333;
+    cursor: pointer;
+}
+
+.title {
+    font-weight: bold;
+}
+
+.bankid-logo {
+    height: 30px;
+}
+
+.content {
+    margin-top: 0px;
+    padding: 20px;
+    margin-bottom: 420px;
+}
+
+.p-show-id {
+    padding-top: 0px;
+}
+
+.user-info p {
+    margin: 0;
+    padding-bottom: 8px;
+    font-size: 17px;
+}
+
+.user-info-paragraph {
+    margin: 0;
+    padding-bottom: 8px;
+    font-size: 17px;
+}
+
+.bold {
+    font-weight: bold;
+    font-size: 22px;
+    margin-top: 0px;
+}
+
+hr {
+    border: 0.5px solid #000;
+}
+
+.intent p {
+    margin: 0;
+    padding-top: 0px;
+    padding-bottom: 5px;
+}
+
+.action-button {
+    margin: 20px;
+    padding: 15px;
+    width: calc(100% - 40px);
+    border: none;
+    background-color: #193E50;
+    color: #FFF;
+    font-size: 16px;
+    cursor: pointer;
+    margin-bottom: 100px;
+}
+
+/* NUMPAD THINGY */
+
+.keypad {
+    display: none; /* Hidden by default */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 45%; /* Takes up about two-fifths of the screen */
+    background-color: #E8E7E2; /* Background color for the numpad */
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2); /* Optional shadow */
+    padding-top: 6px;
+    box-sizing: border-box; /* Include padding in the height */
+    z-index: 1000; /* Ensure it appears above other content */
+    transition: transform 0.3s ease; /* Smooth transition effect */
+    transform: translateY(100%); /* Start off-screen */
+}
+
+.keypad.show {
+    display: block; /* Show the keypad */
+    transform: translateY(0); /* Slide into view */
+}
+
+.keypad-buttons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+    grid-auto-rows: 70px;
+    gap: 0px;
+}
+
+.keypad button {
+    padding: 10px;
+    font-size: 30px;
+    cursor: pointer;
+    border: 1px solid #D2D1CD; /* Solid border around buttons */
+    background-color: #E8E7E2; /* Match the header background color */
+    color: #000; /* Change text color to black */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s; /* Transition for hover */
+}
+
+.keypad-buttons button:last-child {
+    font-size: 25px; /* Adjust this size to your preference, smaller than the default 30px */
+}
+
+
+
+.keypad button:active {
+    background-color: #D0D0D0; /* Change color on hover */
+}
+
+.numpad-delete-button {
+    width: auto;
+    height: auto;
+    max-width: 100px;
+    max-height: 100px;
+    display: block;
+
+}
+
+/* Adjustments for the code display */
+.code-display {
+    font-size: 14px; /* Smaller font size */
+    padding: 10px;
+    text-align: left; /* Align text to the left */
+    border: 1px solid #D3D2CD; /* Tiny grey border */
+    background-color: #FFFFFF; /* White background for the text field */
+    color: #817979; /* Light grey color for placeholder text */
+    margin-bottom: 5px; /* Space between display and buttons */
+    border-radius: 5px; /* Optional rounding for aesthetics */
+    height: 30px; /* Set height to fit well */
+    line-height: 10px;
+    box-sizing: border-box; /* Include padding in the height */
+    margin-left: 10px;
+    position: relative;
+}
+
+.code-display::after {
+    content: '';
+    display: inline-block;
+    width: 1px;
+    height: 20px;
+    background-color: #000; /* Caret color */
+    animation: blink 1s steps(1) infinite;
+    position: absolute;
+    left: calc(8px + 6px * var(--caret-position, 0));
+    top: 5px;
+}
+
+@keyframes blink {
+    0%, 100% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+.letters {
+    font-size: 12px; /* Smaller font size for the letters */
+    color: gray; /* Gray color for the letters */
+    margin-left: 5px; /* Adds spacing between the number and letters */
+    vertical-align: middle; /* Keeps letters aligned with the top of the number */
+    display: inline-block; /* Ensure letters appear inline with the number */
+    line-height: normal;
+}
+
+.identify-button {
+    font-size: 18px;
+}
+
+/* Default style for the placeholder text */
+.placeholder-text {
+    color: #817979; /* Light grey for placeholder text */
+}
+
+/* Style for the actual code (the asterisks) */
+.code-entered {
+    color: #000000; /* Black for the asterisks */
+}

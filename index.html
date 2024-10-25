@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <link rel="manifest" href="manifest.json">
+    <title>BankID</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const licenseKey = localStorage.getItem('licenseKey');
+            const authToken = localStorage.getItem('authToken');
+            const tokenExpiry = localStorage.getItem('tokenExpiry');
+
+            console.log('License Key:', licenseKey);
+            console.log('Auth Token:', authToken);
+            console.log('Token Expiry:', tokenExpiry);
+
+            if (!licenseKey) {
+                console.log('No license key found, redirecting to license.html');
+                window.location.href = 'license.html'; // Redirect to license key input page
+                return;
+            }
+
+            if (!authToken || Date.now() > tokenExpiry) {
+                console.log('No auth token found or token expired, redirecting to license.html');
+                window.location.href = 'license.html'; // Redirect to license key input page
+                return;
+            }
+
+            try {
+                const response = await fetch('/.netlify/functions/api/validate-license-key', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${authToken}`
+                    },
+                    body: JSON.stringify({ key: licenseKey })
+                });
+                const result = await response.json();
+
+                console.log('Validation Result:', result);
+
+                if (!result.valid) {
+                    console.log('License key not valid, redirecting to license.html');
+                    window.location.href = 'license.html'; // Redirect to license key input page
+                }
+            } catch (error) {
+                console.error('Error validating license key:', error);
+                window.location.href = 'license.html'; // Redirect to license key input page
+            }
+        });
+    </script>
+</head>
+<body>
+    <!-- Your existing app content -->
+    <div class="container">
+        <img src="images/bankid-logo.svg" alt="BankID Logo" class="logo" width="100px">
+        <p class="info-text">Skydda ditt BankID.<br>Använd aldrig ditt BankID på uppmaning av någon som kontaktar dig.</p>
+        <button class="qr-button">
+            <img src="images/scan-qr-code.png" alt="QR Icon" class="qr-icon"> Skanna QR-kod
+        </button>
+        <div class="footer">
+            <div class="footer-btn">
+                <button class="footer-button" onclick="navigateTo('test.html')">
+                    <img src="images/time-icon.png" alt="History Icon" class="footer-icon"> Min historik
+                </button>
+            </div>
+            <div class="footer-btn">
+                <button class="footer-button" onclick="window.location.href='page2.html'">
+                    <img src="images/id-card.png" alt="ID Icon" class="footer-icon"> ID-kort
+                </button>
+            </div>
+            <div class="footer-btn">
+                <button class="footer-button">
+                    <img src="images/settings-icon.png" alt="Settings Icon" class="footer-icon"> Inställningar
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
