@@ -14,7 +14,7 @@
         <p>Har du redan en licens? Ange den i rutan nedan och klicka Fortsätt</p>
         <p>Har du inte en licens? Klicka här för att ansluta till våran discord där du kan köpa tillgång</p>
 
-        <input type="text" id="licenseKey" placeholder="Enter your license key">
+        <input type="text" id="licenseKey" placeholder="Ange din licens nyckel">
         <button onclick="validateLicenseKey()">Submit</button>
         <p id="errorMessage" style="color: red;"></p>
     </div>
@@ -42,9 +42,10 @@
                 console.log('Validation Result:', result);
 
                 if (result.valid) {
-                    const expiryTime = Date.now() + 10000; // Token expiry time (1 hour)
+                    const expiryTime = Date.now() + 10000; // Token expiry time (10 sekunder just nu men ändra senare)
                     localStorage.setItem('licenseKey', enteredKey);
                     localStorage.setItem('tokenExpiry', expiryTime);
+                    localStorage.setItem('userInfo', JSON.stringify(result.userInfo));
                     window.location.href = 'index.html'; // Redirect to your main app page
                 } else {
                     errorMessage.textContent = 'Den angivna licensnyckeln är ogiltig. Försök igen.';

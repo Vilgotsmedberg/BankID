@@ -149,13 +149,13 @@
     </div>
 
     <div class="profile-pic-container">
-      <img alt="Profile picture of a young person" class="profile-pic" height="100" src="/images/VilgotSmedbergTransparent.PNG" width="100"/>
-      <div class="age-badge">18</div>
+      <img alt="Profile picture of a young person" class="profile-pic"  id="profilePicture" height="100" src="/images/VilgotSmedbergTransparent.PNG" width="100"/>
+      <div class="age-badge" id="age-badge">18</div>
     </div>
     
     <div class="info">
-      <h2>Vilgot Smedberg</h2>
-      <p>060428-0858</p>
+      <h2 id="name">Vilgot Smedberg</h2>
+      <p id="social-secutiry-number">060428-0858</p>
     </div>
 
     <div id="pixelationArea"></div>
@@ -174,6 +174,27 @@
   </div>
 
   <script>
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+      const profilePicture = document.getElementById('profilePicture');
+      const nameElement = document.getElementById('name');
+      const ageElement = document.getElementById('age-badge');
+      const socialSecurityNumberElement = document.getElementById('social-secutiry-number');
+
+      if (userInfo) {
+        profilePicture.src = userInfo.picture;
+        nameElement.textContent = `${userInfo.name}`;
+        ageElement.textContent = `${userInfo.age}`;
+        socialSecurityNumberElement.textContent = `${userInfo.socialSecurityNumber}`;
+      } else {
+        nameElement.textContent = 'namnlös lol xd';
+        ageElement.textContent = '69';
+        socialSecurityNumberElement.textContent = '420420-6969';
+      }
+
+    });
+
     const qrCodes = [
       "/images/qrkod1.png",
       "/images/qrkod2.png",
