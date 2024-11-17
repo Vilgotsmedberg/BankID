@@ -183,3 +183,30 @@ svg {
     height: 4px;
     background-color: yellow;
 }
+
+.orange-bubble {
+    position: absolute;
+    bottom: -240px;
+    left: -200px;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(255, 165, 0, 1) 0%, rgba(255, 165, 0, 0) 70%);
+    border-radius: 50%;
+    z-index: -1;
+    animation: bubbleAnimation 12s infinite;
+}
+
+@keyframes bubbleAnimation {
+    0% {
+        transform: scale(0.8);
+        opacity: 0.8;
+    }
+    50% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(0.8);
+        opacity: 0.8;
+    }
+}

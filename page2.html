@@ -21,8 +21,8 @@
             to { transform: translateX(0); }
         }
 
-        .slide.up {
-            animation: slideUp 2s forwards; /* HASTIGHET FÖR ATT SLIDEA 0.35 */
+        .slide-up {
+            animation: slideUp 0.35s forwards; /* HASTIGHET FÖR ATT SLIDEA */
         }
 
         @keyframes slideUp {
@@ -30,12 +30,20 @@
             to { transform: translateY(0); }
         }
 
+        .slide-out {
+            animation: slideOut 0.35s forwards; /* HASTIGHET FÖR ATT SLIDEA */
+        }
+
+        @keyframes slideOut {
+            from { transform: translateX(0); }
+            to { transform: translateX(100%); }
+        }
     </style>
 </head>
 <body class="slide-in">
     <div class="container">
         <div class="header">
-            <button class="back-button" onclick="window.location.href='home.html'">Avbryt</button>
+            <button class="back-button" onclick="showOverlay()">Avbryt</button>
             <div class="title">IDENTIFIERING</div>
             <img class="bankid-logo" src="/images/bankid-logo.svg" alt="BankID Logo">
         </div>
@@ -78,16 +86,31 @@
         </div>
     </div>
 
+    <div id="overlay" class="overlay">
+        <div class="white-box">Vänligen vänta...</div>
+    </div>
+
+    <audio id="clickSound" src="click.mp3"></audio>
+
     <script>
         let code = ''; // To store the entered code
     
+        function playClickSound() {
+            const clickSound = document.getElementById('clickSound');
+            clickSound.currentTime = 0; // Rewind to the start
+            clickSound.play();
+        }
+
         function openKeypad() {
+            console.log('openKeypad called'); // Debug log
             const keypad = document.getElementById('keypad');
-            keypad.classList.add('slide-up');
-            keypad.style.bottom = '0';
+            keypad.classList.add('slide-up'); // Show the keypad with slide-up animation
+            keypad.style.bottom = '0'; // Ensure the keypad is visible
         }
 
         function addNumber(num) {
+            console.log('addNumber called with:', num); // Debug log
+            playClickSound(); // Play click sound
             if (code === "Säkerhetskod") {
                 code = ""; // Clear placeholder
             }
@@ -98,19 +121,16 @@
         }
 
         function deleteLast() {
+            console.log('deleteLast called'); // Debug log
+            playClickSound(); // Play click sound
             if (code.length > 0) {
                 code = code.slice(0, -1);
                 updateDisplay();
             }
         }
 
-
-        function submitCode() {
-            alert("Code submitted: " + code);
-            // You can add more functionality here, like sending the code to a server
-        }
-
         function updateDisplay() {
+            console.log('updateDisplay called'); // Debug log
             const display = document.querySelector('.code-display');
 
             // Update the display text to asterisks or placeholder
@@ -132,17 +152,14 @@
             // Update the Identify button's appearance based on the code length
             const identifyButton = document.querySelector('.keypad-buttons button:last-child');
             if (code.length === 6) {
-                identifyButton.style.backgroundColor = '#193E50'; // Blue background
-                identifyButton.style.color = '#FFFFFF'; // White text
+                identifyButton.classList.add('active'); 
             } else {
-                identifyButton.style.backgroundColor = '#E8E7E2'; // Original color (or adjust as needed)
-                identifyButton.style.color = '#000000'; // Original text color
+                identifyButton.classList.remove('active');
             }
         }
 
-
-
         function updateDeleteButtonColor() {
+            console.log('updateDeleteButtonColor called'); // Debug log
             const deleteButton = document.querySelector('.numpad-delete-button');
             if (code.length > 0) {
                 deleteButton.style.filter = 'brightness(0)'; // Makes the button black
@@ -153,6 +170,36 @@
             }
         }
 
+        function showOverlay() {
+            console.log('showOverlay called'); // Debug log
+            const overlay = document.getElementById('overlay');
+            overlay.classList.add('show'); // Show the overlay
+
+            setTimeout(() => {
+                document.body.classList.add('slide-out'); // Slide out the page
+            }, 500); // Delay to show the overlay
+
+            setTimeout(() => {
+                overlay.classList.remove('show'); // Hide the overlay
+                window.location.href = 'home.html'; // Redirect to home.html
+            }, 1000); // Delay to hide the overlay after the slide-out animation
+        }
+
+        async function displayUserInfo() {
+            const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+            if (userInfo) {
+                document.getElementById('name').textContent = userInfo.name;
+                document.getElementById('social-security-number').textContent = userInfo.socialSecurityNumber;
+                document.getElementById('profilePicture').src = userInfo.picture;
+                document.getElementById('profilePicture').alt = `Profile picture of ${userInfo.name}`;
+                document.getElementById('age-badge').textContent = userInfo.age;
+                console.log('User Info:', userInfo);
+            } else {
+                window.location.href = 'index.html';
+            }
+        }
+
+        //window.onload = displayUserInfo;
     </script>
 </body>
 </html>

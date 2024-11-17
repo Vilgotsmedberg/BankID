@@ -101,7 +101,7 @@ hr {
     bottom: -100%;
     left: 0;
     right: 0;
-    height: 45%; /* Takes up about two-fifths of the screen */
+    height: 50%; /* Takes up about two-fifths of the screen */
     background-color: #E8E7E2; /* Background color for the numpad */
     box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2); /* Optional shadow */
     padding-top: 6px;
@@ -123,7 +123,7 @@ hr {
 
 .keypad button {
     padding: 10px;
-    font-size: 30px;
+    font-size: 36px;
     cursor: pointer;
     border: 1px solid #D2D1CD; /* Solid border around buttons */
     background-color: #E8E7E2; /* Match the header background color */
@@ -135,9 +135,16 @@ hr {
 }
 
 .keypad-buttons button:last-child {
+
     font-size: 25px; /* Adjust this size to your preference, smaller than the default 30px */
+    background-color: #E8E7E2;
+    color: rgba(0, 0, 0, 0.2); /* Light grey background color */
 }
 
+.keypad-buttons button:last-child.active {
+    background-color: #193E50;
+    color: white;
+}
 
 
 .keypad button:active {
@@ -156,7 +163,7 @@ hr {
 /* Adjustments for the code display */
 .code-display {
     font-size: 14px; /* Smaller font size */
-    padding: 10px;
+    padding: 16px;
     text-align: left; /* Align text to the left */
     border: 1px solid #D3D2CD; /* Tiny grey border */
     background-color: #FFFFFF; /* White background for the text field */
@@ -168,6 +175,8 @@ hr {
     box-sizing: border-box; /* Include padding in the height */
     margin-left: 10px;
     position: relative;
+    display: flex;
+    align-items: center;
 }
 
 .code-display::after {
@@ -192,7 +201,7 @@ hr {
 }
 
 .letters {
-    font-size: 12px; /* Smaller font size for the letters */
+    font-size: 15px; /* Smaller font size for the letters */
     color: gray; /* Gray color for the letters */
     margin-left: 5px; /* Adds spacing between the number and letters */
     vertical-align: middle; /* Keeps letters aligned with the top of the number */
@@ -212,4 +221,46 @@ hr {
 /* Style for the actual code (the asterisks) */
 .code-entered {
     color: #000000; /* Black for the asterisks */
+}
+
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.25); /* adjust grayness */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.overlay.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.white-box {
+    background-color: #FFF;
+    padding: 20px 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    color: black;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.slide-out {
+    animation: slideOut 0.35s forwards;
+}
+
+@keyframes slideOut {
+    from { transform: translateY(0); }
+    to { transform: translateY(100%); }
 }

@@ -27,6 +27,8 @@
             TA BORT DENNA KOMMENTAR FÖR ATT BLI AUTOMATISKT INLOGGAD
         */
         // asså den DOMContentLoaded grejen möjliggör automatisk inloggning, utan att behöva skriva in licens nyckel varje gång
+
+        
         document.addEventListener('DOMContentLoaded', () => {
             const licenseKey = localStorage.getItem('licenseKey');
             const userInfo = JSON.parse(localStorage.getItem('userInfo'));
