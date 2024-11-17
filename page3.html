@@ -1,0 +1,284 @@
+<html>
+ <head>
+  <title>BankID</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="page3.css">
+  <link rel="manifest" href="manifest.json">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+
+  <meta name="theme-color" content="#183E4F">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+ </head>
+ <body>
+  <div class="container">
+      <svg class="background-pattern" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="100%" height="auto" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="75%" style="stop-color:#bae0e0; stop-opacity:1" />
+              <stop offset="100%" style="stop-color:#ffffff; stop-opacity:1" />
+          </linearGradient>
+          <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="75%" style="stop-color:#bae0e0; stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#ffffff; stop-opacity:1" />
+          </linearGradient>
+          <linearGradient id="whiteToPink" gradientUnits="userSpaceOnUse" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:white; stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#ffcccc77; stop-opacity:0.7" />
+          </linearGradient>
+        </defs>
+        <!-- Remove the rect element to make the background transparent -->
+        <!-- Top waves -->
+        <path class="wave-path" d="M0%,14% Q18%,-12% 27%,-265%" stroke="#d3d3d3" stroke-width="1.0" fill="none"/>
+        <path class="wave-path" d="M0%,15% Q19%,-13% 28%,-265%" stroke="#d3d3d3" stroke-width="1.1" fill="none"/>
+        <path class="wave-path" d="M0%,16% Q20%,-14% 29%,-265%" stroke="#d3d3d3" stroke-width="1.2" fill="none"/>
+        <path class="wave-path" d="M0%,17% Q21%,-15% 30%,-265%" stroke="#d3d3d3" stroke-width="1.3" fill="none"/>
+        <path class="wave-path" d="M0%,18% Q22%,-16% 31%,-265%" stroke="#d3d3d3" stroke-width="1.4" fill="none"/>
+        <path class="wave-path" d="M0%,19% Q23%,-17% 32%,-265%" stroke="#d3d3d3" stroke-width="1.5" fill="none"/>
+        <path class="wave-path" d="M0%,20% Q24%,-18% 33%,-265%" stroke="#d3d3d3" stroke-width="1.6" fill="none"/>
+        <path class="wave-path" d="M0%,21% Q25%,-19% 34%,-265%" stroke="#d3d3d3" stroke-width="1.7" fill="none"/>
+        <path class="wave-path" d="M0%,22% Q26%,-20% 35%,-265%" stroke="#d3d3d3" stroke-width="1.8" fill="none"/>
+        <path class="wave-path" d="M0%,23% Q27%,-21% 36%,-265%" stroke="#d3d3d3" stroke-width="1.9" fill="none"/>
+        <path class="wave-path" d="M0%,24% Q28%,-22% 37%,-265%" stroke="#d3d3d3" stroke-width="2.0" fill="none"/>
+        
+        <path class="wave-path" d="M0,-240 Q40, -230 80, -265" stroke="#CC95DE" stroke-width="1.2" fill="none"/>
+        <path class="wave-path" d="M0,-220 Q40, -210 100,-265" stroke="#CC95DE" stroke-width="1.2" fill="none"/>
+        <path class="wave-path" d="M0,-200 Q40, -190 120,-265" stroke="#CC95DE" stroke-width="1.2" fill="none"/>
+        <path class="wave-path" d="M0,-180 Q40, -170 140,-265" stroke="#CC95DE" stroke-width="1.2" fill="none"/>
+        <path class="wave-path" d="M0,-160 Q40, -150 160,-265" stroke="#CC95DE" stroke-width="1.2" fill="none"/>
+        <path class="wave-path" d="M0,-140 Q40, -130 180,-265" stroke="#CC95DE" stroke-width="1.2" fill="none"/>
+        <path class="wave-path" d="M0,-120 Q40, -110 200,-265" stroke="#CC95DE" stroke-width="1.2" fill="none"/>
+        <path class="wave-path" d="M0,-100 Q40, -90 220,-265" stroke="#CC95DE" stroke-width="1.2" fill="none"/>
+        <path class="wave-path" d="M0,-80 Q40, -70 240,-265" stroke="#CC95DE" stroke-width="1.2" fill="none"/>
+        <path class="wave-path" d="M0,-60 Q40, -50 260,-265" stroke="#CC95DE" stroke-width="1.2" fill="none"/>
+        <path class="wave-path" d="M0,-40 Q40, -30 280,-265" stroke="#CC95DE" stroke-width="1.2" fill="none"/>
+        <path class="wave-path" d="M0,-20 Q40, -10 300,-265" stroke="#CC95DE" stroke-width="1.2" fill="none"/>
+        
+        <path class="wave-path" d="M0, -250 Q400, -350 800, -100 T1600, -100" stroke="#c2c2c2" stroke-width="1.5" fill="none"/>
+        <path class="wave-path" d="M0, -220 Q370, -320 770, -70 T1570, -70" stroke="#c2c2c2" stroke-width="1.5" fill="none"/>
+        <path class="wave-path" d="M0, -190 Q340, -290 740, -40 T1540, -40" stroke="#c2c2c2" stroke-width="1.5" fill="none"/>
+        <path class="wave-path" d="M0, -160 Q310, -260 710, 0 T1510, 0" stroke="#c2c2c2" stroke-width="1.5" fill="none"/>
+        <path class="wave-path" d="M0, -130 Q280, -230 680, 40 T1480, 40" stroke="#c2c2c2" stroke-width="1.5" fill="none"/>
+        <path class="wave-path" d="M0, -100 Q250, -200 650, 80 T1450, 80" stroke="#c2c2c2" stroke-width="1.5" fill="none"/>
+        <path class="wave-path" d="M0, -70 Q220, -170 620, 120 T1420, 120" stroke="#c2c2c2" stroke-width="1.5" fill="none"/>
+        
+        <path class="wave-path" d="M470,-265 Q520,-200 570,-100 Q620,0 570,100" stroke="url(#grad1)" stroke-width="1.2" fill="none"/>
+        <path class="wave-path" d="M490,-265 Q530,-220 590,-100 Q640,0 590,100" stroke="url(#grad1)" stroke-width="1.2" fill="none"/>
+        <path class="wave-path" d="M510,-265 Q540,-240 610,-100 Q660,0 610,100" stroke="url(#grad1)" stroke-width="1.2" fill="none"/>
+        <path class="wave-path" d="M530,-265 Q550,-260 630,-100 Q680,0 630,100" stroke="url(#grad1)" stroke-width="1.2" fill="none"/>
+        <path class="wave-path" d="M550,-265 Q560,-280 650,-100 Q700,0 650,100" stroke="url(#grad1)" stroke-width="1.2" fill="none"/>
+        <path class="wave-path" d="M570,-265 Q570,-300 670,-100 Q720,0 670,100" stroke="url(#grad1)" stroke-width="1.2" fill="none"/>
+        <path class="wave-path" d="M590,-265 Q580,-310 690,-100 Q740,0 690,100" stroke="url(#grad1)" stroke-width="1.2" fill="none"/>
+        <path class="wave-path" d="M610,-265 Q590,-320 710,-100 Q760,0 710,100" stroke="url(#grad1)" stroke-width="1.2" fill="none"/>
+        <path class="wave-path" d="M630,-265 Q600,-330 730,-100 Q780,0 730,100" stroke="url(#grad1)" stroke-width="1.2" fill="none"/>
+        <path class="wave-path" d="M650,-265 Q610,-340 750,-100 Q800,0 750,100" stroke="url(#grad1)" stroke-width="1.2" fill="none"/>
+        <path class="wave-path" d="M670,-265 Q620,-350 770,-100 Q820,0 770,100" stroke="url(#grad1)" stroke-width="1.2" fill="none"/>
+        <path class="wave-path" d="M690,-265 Q630,-360 790,-100 Q840,0 790,100" stroke="url(#grad1)" stroke-width="1.2" fill="none"/>
+        <path class="wave-path" d="M710,-265 Q640,-370 810,-100 Q860,0 810,100" stroke="url(#grad1)" stroke-width="1.2" fill="none"/>
+        <path class="wave-path" d="M730,-265 Q650,-380 830,-100 Q880,0 830,100" stroke="url(#grad1)" stroke-width="1.2" fill="none"/>
+  
+        <!-- Bottom waves -->
+  
+        <!-- Bottom waves -->
+  
+        <!-- Bottom Block of Waves -->
+        <path class="wave-path" d="M0,950 Q200,800 400,950 T800,950" stroke="#d3d3d3" stroke-width="1.5" fill="none"/>
+        <path class="wave-path" d="M0,940 Q200,810 400,940 T800,940" stroke="#d3d3d3" stroke-width="1.5" fill="none"/>
+        <path class="wave-path" d="M0,930 Q200,820 400,930 T800,930" stroke="#d3d3d3" stroke-width="1.5" fill="none"/>
+        <path class="wave-path" d="M0,920 Q200,830 400,920 T800,920" stroke="#d3d3d3" stroke-width="1.5" fill="none"/>
+        <path class="wave-path" d="M0,910 Q200,840 400,910 T800,910" stroke="#d3d3d3" stroke-width="1.5" fill="none"/>
+        <path class="wave-path" d="M0,900 Q200,850 400,900 T800,900" stroke="#d3d3d3" stroke-width="1.5" fill="none"/>
+  
+        <!-- Block 1 -->
+        <path class="wave-path" d="M0,800 Q100,750 200,800 T400,800" stroke="#f0f0f0" stroke-width="1.5" fill="none"/>
+        <path class="wave-path" d="M0,790 Q100,740 200,790 T400,790" stroke="#f0f0f0" stroke-width="1.5" fill="none"/>
+        <path class="wave-path" d="M0,780 Q100,730 200,780 T400,780" stroke="#f0f0f0" stroke-width="1.5" fill="none"/>
+        <path class="wave-path" d="M0,770 Q100,720 200,770 T400,770" stroke="#f0f0f0" stroke-width="1.5" fill="none"/>
+        <path class="wave-path" d="M0,760 Q100,710 200,760 T400,760" stroke="#f0f0f0" stroke-width="1.5" fill="none"/>
+  
+        <!-- Block 2 -->
+        <path class="wave-path" d="M0,700 Q120,670 240,700 T480,700" stroke="#f0f0f0" stroke-width="1.5" fill="none"/>
+        <path class="wave-path" d="M0,690 Q120,660 240,690 T480,690" stroke="#f0f0f0" stroke-width="1.5" fill="none"/>
+        <path class="wave-path" d="M0,680 Q120,650 240,680 T480,680" stroke="#f0f0f0" stroke-width="1.5" fill="none"/>
+  
+        <!-- Block 3 -->
+        <path class="wave-path" d="M0,650 Q140,600 280,650 T560,650" stroke="#f0f0f0" stroke-width="1.5" fill="none"/>
+        <path class="wave-path" d="M0,640 Q140,590 280,640 T560,640" stroke="#f0f0f0" stroke-width="1.5" fill="none"/>
+        <path class="wave-path" d="M0,630 Q140,580 280,630 T560,630" stroke="#f0f0f0" stroke-width="1.5" fill="none"/>
+        <path class="wave-path" d="M0,620 Q140,570 280,620 T560,620" stroke="#f0f0f0" stroke-width="1.5" fill="none"/>
+  
+        <!-- Block 4 -->
+
+        <!-- Right Side Wave Blocks -->
+        <!-- Block 5 -->
+        <path class="wave-path" d="M800,800 Q700,750 600,800 T400,800" stroke="#f0f0f0" stroke-width="1.5" fill="none" />
+        <path class="wave-path" d="M800,790 Q700,740 600,790 T400,790" stroke="#f0f0f0" stroke-width="1.5" fill="none" />
+        <path class="wave-path" d="M800,780 Q700,730 600,780 T400,780" stroke="#f0f0f0" stroke-width="1.5" fill="none" />
+        <path class="wave-path" d="M800,770 Q700,720 600,770 T400,770" stroke="#f0f0f0" stroke-width="1.5" fill="none" />
+        <path class="wave-path" d="M800,760 Q700,710 600,760 T400,760" stroke="#f0f0f0" stroke-width="1.5" fill="none" />
+  
+        <!-- Block 6 -->
+        <path class="wave-path" d="M800,700 Q680,670 560,700 T320,700" stroke="#f0f0f0" stroke-width="1.5" fill="none" />
+        <path class="wave-path" d="M800,690 Q680,660 560,690 T320,690" stroke="#f0f0f0" stroke-width="1.5" fill="none" />
+        <path class="wave-path" d="M800,680 Q680,650 560,680 T320,680" stroke="#f0f0f0" stroke-width="1.5" fill="none" />
+  
+        <!-- Block 7 -->
+        <path class="wave-path" d="M800,650 Q640,600 480,650 T200,650" stroke="#f0f0f0" stroke-width="1.5" fill="none" />
+        <path class="wave-path" d="M800,640 Q640,590 480,640 T200,640" stroke="#f0f0f0" stroke-width="1.5" fill="none" />
+        <path class="wave-path" d="M800,630 Q640,580 480,630 T200,630" stroke="#f0f0f0" stroke-width="1.5" fill="none" />
+        <path class="wave-path" d="M800,620 Q640,570 480,620 T200,620" stroke="#f0f0f0" stroke-width="1.5" fill="none" />
+  
+        <!-- Block 8 -->
+
+        <!-- Wavy Path Curving Around the Image -->
+        <!-- Wavy Path Curving Around the Image with Increased Spacing -->
+        <path class="wave-path" d="M450,-265 C-100,-50 -100,800 470,1100" stroke="url(#whiteToPink)" stroke-width="1.5" fill="none" />
+        <path class="wave-path" d="M450,-210 C-90,-40 -90,810 470,1125" stroke="url(#whiteToPink)" stroke-width="1.5" fill="none" />
+        <path class="wave-path" d="M450,-155 C-80,-30 -80,820 470,1150" stroke="url(#whiteToPink)" stroke-width="1.5" fill="none" />
+        <path class="wave-path" d="M450,-100 C-70,-20 -70,830 470,1165" stroke="url(#whiteToPink)" stroke-width="1.5" fill="none" />
+        <path class="wave-path" d="M450,-45 C-60,-10 -60,840 470,1180" stroke="url(#whiteToPink)" stroke-width="1.5" fill="none" />
+  
+      </svg>
+
+    <div class="header">
+      <i class="fas fa-times"></i>
+      <img alt="BankID logo" height="50" src="/images/bankid-logo.svg" style="width: 50px;" width="50"/>
+      <i class="fas fa-ellipsis-v"></i>
+    </div>
+
+    <div class="profile-pic-container">
+      <img alt="Profile picture of a young person" class="profile-pic"  id="profilePicture" height="100" width="100"/>
+      <div class="age-badge" id="age-badge">18</div>
+    </div>
+    
+    <div class="info">
+      <h2 id="name">Vilgot Smedberg</h2>
+      <p id="social-secutiry-number">060428-0858</p>
+    </div>
+
+    <div id="pixelationArea"></div>
+
+  </div>
+
+      <div class="qr-code-container">
+      <div class="qr-code-box" style="position: absolute;">
+        <img alt="QR code" id="qrCode" height="150" src="/images/qrkod4.png" width="150"/>
+      </div>
+    </div>
+
+  <div class="footer">
+    <p>Delas via QR-koden:</p>
+    <p class="footer-footer">Foto, namn och personnummer</p>
+  </div>
+
+  <script>
+
+    async function displayUserInfo() {
+      const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+      if (userInfo) {
+        document.getElementById('name').textContent = userInfo.name;
+        document.getElementById('social-secutiry-number').textContent = userInfo.socialSecurityNumber;
+        document.getElementById('profilePicture').src = userInfo.picture;
+        document.getElementById('profilePicture').alt = `Profile picture of ${userInfo.name}`;
+        document.getElementById('age-badge').textContent = userInfo.age;
+        console.log('User Info:', userInfo);
+        console.log('Profile Picture URL:', userInfo.profile);
+      } else {
+        window.location.href = 'index.html';
+      }
+    }
+
+    window.onload = displayUserInfo;
+
+    const qrCodes = [
+      "/images/qrkod1.png",
+      "/images/qrkod2.png",
+      "/images/qrkod3.png",
+      "/images/qrkod4.png"
+    ];
+
+    let index = 0;
+
+    // Function to change the QR code every 1 second
+    setInterval(() => {
+      const qrCodeElement = document.getElementById("qrCode");
+      index = (index + 1) % qrCodes.length; // Cycle through the array
+      qrCodeElement.src = qrCodes[index];
+    }, 1000);
+
+    function adjustPathLength() {
+      const svgPaths = document.querySelectorAll('.wave-path');
+      svgPaths.forEach(path => {
+        const bbox = path.getBBox();
+
+        const scaleFactor = Math.max(bbox.width, bbox.height) * 10; // adjust for scaling
+        path.setAttribute('transform', `scale{$scaleFactor}`);
+      });
+    } 
+
+    // RESERVED FOR PIXEL EFFECT
+    const pixelationArea = document.getElementById("pixelationArea");
+
+    function createPixel(x, y, color) {
+        const pixel = document.createElement("div");
+        pixel.className = "pixel";
+        pixel.style.left = `${x}px`;
+        pixel.style.top = `${y}px`;
+        pixel.style.backgroundColor = color; // Set the pixel color dynamically
+        pixelationArea.appendChild(pixel);
+    }
+
+    function pixelate(x, y) {
+        // Create a grid of pixels in a radius around the touch/mouse position
+        for (let i = -20; i <= 20; i += 5) {
+            for (let j = -20; j <= 20; j += 5) {
+                const pixelX = x + i;
+                const pixelY = y + j;
+                const color = getColorUnderPosition(pixelX, pixelY); // Get the color from the container
+                
+                createPixel(pixelX, pixelY, color);
+            }
+        }
+    }
+
+    function getColorUnderPosition(x, y) {
+        // Get the color of the pixel at (x, y) in the container
+        const element = document.elementFromPoint(x, y);
+        const computedStyle = window.getComputedStyle(element);
+        return computedStyle.backgroundColor || 'transparent';
+    }
+
+    // Event listeners for both touch and mouse
+    document.addEventListener('touchstart', (e) => {
+        const touch = e.touches[0];
+        pixelate(touch.clientX, touch.clientY);
+    });
+
+    document.addEventListener('touchmove', (e) => {
+        const touch = e.touches[0];
+        pixelate(touch.clientX, touch.clientY);
+    });
+
+    document.addEventListener('mousemove', (e) => {
+        pixelate(e.clientX, e.clientY); // Show effect on mouse move
+    });
+
+    // Clear pixels when touch ends or mouse leaves
+    document.addEventListener('touchend', clearPixels);
+    document.addEventListener('mouseleave', clearPixels);
+
+    function clearPixels() {
+        while (pixelationArea.firstChild) {
+            pixelationArea.removeChild(pixelationArea.firstChild); // Clear all pixels
+        }
+    }
+
+
+  
+
+
+  </script>
+ </body>
+</html>

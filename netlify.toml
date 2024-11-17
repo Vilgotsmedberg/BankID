@@ -1,0 +1,13 @@
+[build]
+  functions = "functions"
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/api"
+  status = 200
+
+[functions]
+  directory = "functions"
+
+[functions."api"]
+  timeout = 60 # Increase the timeout to 60 seconds

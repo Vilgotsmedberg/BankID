@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="settings.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#f9f9f9">
+    <title>Settings</title>
+</head>
+<body>
+
+    <div id="container">
+        <a href="index.html" class="cancel-button">Avbryt</a>
+        <h1>Settings</h1>
+        <form id="settingsForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" required>
+            <label for="socialSecurityNumber">Social Security Number:</label>
+            <input type="text" id="socialSecurityNumber" name="socialSecurityNumber" required>
+            <label for="picture">Picture:</label>
+            <input type="file" id="picture" name="picture" accept="image/*" required>
+            <button type="submit">Uppdatera</button>
+        </form>
+        <p id="errorMessage" style="color: red;"></p>
+        <p class="disclaimer">
+            Denna applikation är enbart en utbildningsmässig kopia av den legitima BankID-appen. Den har inte skapats för olagliga eller bedrägliga syften, utan är avsedd att användas enbart för lärande och experimentella ändamål. Appen får under inga omständigheter användas för bedrägeri, vilseledande eller annan olaglig aktivitet. Vi som utvecklare av denna applikation tar inget ansvar för eventuell missbruk eller konsekvenser som kan uppstå för användaren. Använd appen ansvarsfullt och i enlighet med gällande lagar.
+        </p>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const settingsForm = document.getElementById('settingsForm');
+            const errorMessage = document.getElementById('errorMessage');
+            const licenseKey = localStorage.getItem('licenseKey');
+
+            if (!licenseKey) {
+                window.location.href = 'home.html'; // Redirect to license key input page
+                return;
+            }
+
+            settingsForm.addEventListener('submit', async (event) => {
+                event.preventDefault();
+
+                const name = document.getElementById('name').value;
+                const age = document.getElementById('age').value;
+                const socialSecurityNumber = document.getElementById('socialSecurityNumber').value;
+                const picture = document.getElementById('picture').files[0];
+
+                if (!name || !age || !socialSecurityNumber || !picture) {
+                    errorMessage.textContent = 'All fields are required.';
+                    return;
+                }
+
+                const reader = new FileReader();
+                reader.onloadend = async () => {
+                    const pictureData = reader.result;
+
+                    try {
+                        const response = await fetch('/.netlify/functions/api/update-user-info', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ key: licenseKey, name, age, socialSecurityNumber, picture: pictureData })
+                        });
+
+                        if (!response.ok) {
+                            throw new Error('Update request failed');
+                        }
+
+                        const result = await response.json();
+                        console.log('Update Result:', result);
+
+                        localStorage.setItem('userInfo', JSON.stringify({ name, age, socialSecurityNumber, picture: pictureData }));
+                        settingsForm.querySelectorAll('input').forEach(input => input.disabled = true);
+                        settingsForm.querySelector('button').disabled = true;
+                    } catch (error) {
+                        console.error('Error updating user information:', error);
+                        errorMessage.textContent = 'Någonting gick fel. Försök igen.';
+                    }
+                };
+
+                reader.readAsDataURL(picture);
+            });
+
+            const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+            if (userInfo) {
+                document.getElementById('name').value = userInfo.name;
+                document.getElementById('age').value = userInfo.age;
+                document.getElementById('socialSecurityNumber').value = userInfo.socialSecurityNumber;
+                settingsForm.querySelectorAll('input').forEach(input => input.disabled = true);
+                settingsForm.querySelector('button').disabled = true;
+            }
+        });
+    </script>
+</body>
+</html>

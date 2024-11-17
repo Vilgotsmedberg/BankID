@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="page2.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#E6E6E6">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ID Kort</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+    <style>
+        .slide-in {
+            animation: slideIn 0.35s forwards; /* HASTIGHET FÖR ATT SLIDEA */
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); }
+            to { transform: translateX(0); }
+        }
+
+        .slide.up {
+            animation: slideUp 2s forwards; /* HASTIGHET FÖR ATT SLIDEA 0.35 */
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(100%); }
+            to { transform: translateY(0); }
+        }
+
+    </style>
+</head>
+<body class="slide-in">
+    <div class="container">
+        <div class="header">
+            <button class="back-button" onclick="window.location.href='home.html'">Avbryt</button>
+            <div class="title">IDENTIFIERING</div>
+            <img class="bankid-logo" src="/images/bankid-logo.svg" alt="BankID Logo">
+        </div>
+
+        <div class="content">
+            <div>
+                <p class="user-info-paragraph">Vilgot Smedberg</p>
+                <p class="user-info-paragraph">Jag identifierar mig hos:</p>
+                <p class="bold">BankID ID-kort</p>
+            </div>
+
+            <hr>
+
+            <div class="intent">
+                <p>Min avsikt:</p>
+                <p class="p-show-id">Visa ID-kort.</p>
+            </div>
+        </div>
+
+        <button class="action-button" onclick="openKeypad()">Identifiera med säkerhetskod</button>
+    </div>
+
+    <div id="keypad" class="keypad">
+        <div class="code-display">Säkerhetskod</div>
+        <div class="keypad-buttons">
+            <button onclick="addNumber('1')">1 <span class="letters"> </span></button>
+            <button onclick="addNumber('2')">2 <span class="letters">ABC</span></button>
+            <button onclick="addNumber('3')">3 <span class="letters">DEF</span></button>
+            <button onclick="addNumber('4')">4 <span class="letters">GHI</span></button>
+            <button onclick="addNumber('5')">5 <span class="letters">JKL</span></button>
+            <button onclick="addNumber('6')">6 <span class="letters">MNO</span></button>
+            <button onclick="addNumber('7')">7 <span class="letters">PQRS</span></button>
+            <button onclick="addNumber('8')">8 <span class="letters">TUV</span></button>
+            <button onclick="addNumber('9')">9 <span class="letters">WXYZ</span></button>
+            <button onclick="deleteLast()">
+                <img src="/images/deleteButton.png" alt="Delete button" class="numpad-delete-button">
+            </button>
+            <button onclick="addNumber('0')">0 <span class="letters"></span></button>
+            <button onclick="window.location.href='page3.html'" class="identify-button">Identifiera</button>
+        </div>
+    </div>
+
+    <script>
+        let code = ''; // To store the entered code
+    
+        function openKeypad() {
+            const keypad = document.getElementById('keypad');
+            keypad.classList.add('slide-up');
+            keypad.style.bottom = '0';
+        }
+
+        function addNumber(num) {
+            if (code === "Säkerhetskod") {
+                code = ""; // Clear placeholder
+            }
+            if (code.length < 6) { // Limit to 6 digits
+                code += num;
+                updateDisplay();
+            }
+        }
+
+        function deleteLast() {
+            if (code.length > 0) {
+                code = code.slice(0, -1);
+                updateDisplay();
+            }
+        }
+
+
+        function submitCode() {
+            alert("Code submitted: " + code);
+            // You can add more functionality here, like sending the code to a server
+        }
+
+        function updateDisplay() {
+            const display = document.querySelector('.code-display');
+
+            // Update the display text to asterisks or placeholder
+            if (code.length > 0) {
+                display.textContent = code.replace(/./g, '*'); // Show asterisks for entered code
+                display.classList.add('code-entered'); // Add class for black color
+                display.classList.remove('placeholder-text'); // Remove placeholder class
+            } else {
+                display.textContent = "Säkerhetskod"; // Show placeholder text
+                display.classList.add('placeholder-text'); // Add class for grey color
+                display.classList.remove('code-entered'); // Remove asterisk class
+            }
+            // Update the caret position
+            display.style.setProperty('--caret-position', code.length);
+            
+            // Update delete button color based on code length
+            updateDeleteButtonColor();
+            
+            // Update the Identify button's appearance based on the code length
+            const identifyButton = document.querySelector('.keypad-buttons button:last-child');
+            if (code.length === 6) {
+                identifyButton.style.backgroundColor = '#193E50'; // Blue background
+                identifyButton.style.color = '#FFFFFF'; // White text
+            } else {
+                identifyButton.style.backgroundColor = '#E8E7E2'; // Original color (or adjust as needed)
+                identifyButton.style.color = '#000000'; // Original text color
+            }
+        }
+
+
+
+        function updateDeleteButtonColor() {
+            const deleteButton = document.querySelector('.numpad-delete-button');
+            if (code.length > 0) {
+                deleteButton.style.filter = 'brightness(0)'; // Makes the button black
+            } else {
+                // Reset the button to the original appearance
+                deleteButton.style.filter = 'none';
+                deleteButton.style.opacity = '1'; // Make sure it is fully visible
+            }
+        }
+
+    </script>
+</body>
+</html>

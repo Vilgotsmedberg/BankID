@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="license.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#ffffff">
+    <title>Enter License Key</title>
+</head>
+<body>
+
+    <div id="container">
+        <h1>Licens nyckel</h1>
+        <h2>För att få tillgång till BankID krävs en licens</h2>
+        <p>Har du redan en licens? Ange den i rutan nedan och klicka Fortsätt</p>
+        <p>Har du inte en licens? Klicka här för att ansluta till våran discord där du kan köpa tillgång</p>
+
+        <input type="text" id="licenseKey" placeholder="Ange din licens nyckel">
+        <button onclick="validateLicenseKey()">Submit</button>
+        <p id="errorMessage" style="color: red;"></p>
+        <button onclick="listLicenseKeys()">List active keyus</button>
+    </div>
+
+    <script>
+        /*
+            TA BORT DENNA KOMMENTAR FÖR ATT BLI AUTOMATISKT INLOGGAD
+        */
+        // asså den DOMContentLoaded grejen möjliggör automatisk inloggning, utan att behöva skriva in licens nyckel varje gång
+        document.addEventListener('DOMContentLoaded', () => {
+            const licenseKey = localStorage.getItem('licenseKey');
+            const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+
+            if (licenseKey && userInfo) {
+                window.location.href = 'home.html'; // Redirect to your main app page
+            }
+        });      
+        
+       
+
+        async function validateLicenseKey() {
+            const key = document.getElementById('licenseKey').value;
+            const response = await fetch('/.netlify/functions/api/validate-license-key', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ key })
+            });
+            const result = await response.json();
+            console.log('Validation Result:', result);
+            if (result.valid) {
+                localStorage.setItem('licenseKey', key);
+                window.location.href = 'home.html';
+            } else {
+                document.getElementById('result').textContent = 'Invalid License Key';
+            }
+        }
+
+        async function listLicenseKeys() {
+            const response = await fetch('/.netlify/functions/api/list-license-keys', {
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json' }
+            });
+            const result = await response.json();
+            console.log(result);
+        }
+
+    </script>
+</body>
+</html>
