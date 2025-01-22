@@ -1,5 +1,5 @@
-const jwt = require('jsonwebtoken');
-const SECRET_KEY = 'your_secret_key'; // Replace with a strong secret key
+tconst jwt = require('jsonwebtoken');
+const SECRET_KEY = 'secret_key'; // Replace with a strong secret key
 
 // Load existing license keys and user information from environment variables
 let licenseKeys = [];
@@ -34,7 +34,7 @@ exports.handler = async (event, context) => {
             if (httpMethod === 'POST') {
                 const { username, password } = JSON.parse(body);
                 // Replace with your actual authentication logic
-                if (username === 'admin' && password === 'fanpager') {
+                if (username === 'username' && password === 'password') {
                     const user = { name: username };
                     const token = jwt.sign(user, SECRET_KEY, { expiresIn: '1h' });
                     return {
